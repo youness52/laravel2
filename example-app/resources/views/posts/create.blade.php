@@ -32,16 +32,21 @@
                 <input type="text" name="title" class="form-control" placeholder="Enter Title">
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Price:</strong>
-                <input type="text" name="price" class="form-control" placeholder="Enter price">
-            </div>
-        </div>
+        
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Description:</strong>
                 <textarea class="form-control" style="height:150px" name="description" placeholder="Enter Description"></textarea>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Category:</strong>
+                <select name="category" id="">
+                @foreach ($data2 as $key => $value)
+                    <option value="{{ $value->id }}">{{ $value->title }}</option>
+                @endforeach
+                </select>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

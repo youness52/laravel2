@@ -4,10 +4,11 @@
     <div class="row" style="margin-top: 5rem;">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Laravel 8 CRUD ZBAIR First myApp</h2>
+                <h2>ZBAIR Youness </h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('posts.create') }}"> Create New Post</a>
+                <a class="btn btn-success" href="{{ route('posts.create') }}"> Create New product</a>
+                <a class="btn btn-success" href="{{ route('categories.index') }}"> Create New category</a>
             </div>
         </div>
     </div>
@@ -22,20 +23,19 @@
         <tr>
             <th>No</th>
             <th>Name</th>
-            <th>Price</th>
             <th>Details</th>
+            <th>idCat</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($data as $key => $value)
         <tr>
             <td>{{ ++$i }}</td>
             <td>{{ $value->title }}</td>
-            <td>{{ $value->price }}</td>
             <td>{{ \Str::limit($value->description, 100) }}</td>
+            <td>{{ $value->idCat }}</td>
             <td>
                 <form action="{{ route('posts.destroy',$value->id) }}" method="POST">   
-                    <a class="btn btn-info" href="{{ route('posts.show',$value->id) }}">Show</a>    
-                    <a class="btn btn-primary" href="{{ route('posts.edit',$value->id) }}">Edit</a>   
+                      
                     @csrf
                     @method('DELETE')      
                     <button type="submit" class="btn btn-danger">Delete</button>

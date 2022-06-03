@@ -13,15 +13,31 @@ class CreatePostTbl extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+    
+        Schema::create('posts', function (Blueprint $table2) {
+            $table2->id();
+            $table2->string('title');
+            $table2->text('description');
+            $table2->timestamps();
+            $table2->text('idCat');
+            $table2->text('idimg');
+        });
+
+        Schema::create('categories',function(Blueprint $table){
             $table->id();
-            $table->string('title');
-            $table->float('price');
-            $table->text('description');
-            $table->string('image');
+            $table->string('title'); 
             $table->timestamps();
         });
+
+        Schema::create('images',function(Blueprint $table3){
+            $table3->id();
+            $table3->string('name'); 
+            $table3->string('path'); 
+            $table3->bigInteger('size'); 
+            $table3->timestamps();
+        });
     }
+
 
     /**
      * Reverse the migrations.
