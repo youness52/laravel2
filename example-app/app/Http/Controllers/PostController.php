@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\File;
 
 class PostController extends Controller
 {
@@ -38,13 +39,24 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+         //$request->file->store('product', 'public');
          $request->validate([
             'title' => 'required',
             'price' => 'required',
             'description' => 'required',
+            'image' => 'required',
         ]);
-    
-        Post::create($request->all());
+
+        $product = new Post([
+            "title" => $request->get('title'),
+            "price" => $request->get('price'),
+            "description" => $request->get('description'),
+            "image" => $request->image->hashName(),
+        ]);
+        $request->image->store('product', 'public');
+        $product->save(); // Finally, save the record.
+        
+        //Post::create($request->all());
      
         return redirect()->route('posts.index')
                         ->with('success','Post created successfully.');

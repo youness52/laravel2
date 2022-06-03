@@ -18,6 +18,7 @@ class CreatePostTbl extends Migration
             $table->string('title');
             $table->float('price');
             $table->text('description');
+            $table->string('image');
             $table->timestamps();
         });
     }
