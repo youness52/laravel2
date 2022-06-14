@@ -1,41 +1,39 @@
 @extends('posts.layout')
-  
+ 
 @section('content')
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Add New categories</h2>
-        </div>
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('posts.index') }}"> Back</a>
-        </div>
-    </div>
-</div>
-   
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-   
-<form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
-@csrf
-     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>name:</strong>
-                <input type="text" name="name" class="form-control" placeholder="Enter name">
+    <div class="row" style="margin-top: 5rem;">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-left">
+                <h2>category</h2>
+            </div>
+            <div class="pull-right">
+                <a class="btn btn-success" href="{{ route('posts.create') }}"> Create New product</a>
+                <a class="btn btn-success" href="{{ route('categories.create') }}"> Create New category</a>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
     </div>
    
-</form>
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
+   
+    <table class="table table-bordered">
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th width="280px">Action</th>
+        </tr>
+        @foreach ($data as $key => $value)
+        <tr>
+            <td>{{ $value->id }}</td>
+            <td>{{ $value->title }}</td>
+            <td>
+            <a class="btn btn-danger" href='delete/{{ $value->id }}'>Delete</a>
+            </td>
+        </tr>
+        @endforeach
+    </table>  
+   
 @endsection

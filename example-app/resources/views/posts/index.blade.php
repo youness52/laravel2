@@ -25,6 +25,7 @@
             <th>Name</th>
             <th>Details</th>
             <th>idCat</th>
+            <th>Image</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($data as $key => $value)
@@ -33,6 +34,7 @@
             <td>{{ $value->title }}</td>
             <td>{{ \Str::limit($value->description, 100) }}</td>
             <td>{{ $value->idCat }}</td>
+            <td><img src="{{ url('storage\product\/').$value->idimg }}" alt="" width="150px"></td>
             <td>
                 <form action="{{ route('posts.destroy',$value->id) }}" method="POST">   
                       

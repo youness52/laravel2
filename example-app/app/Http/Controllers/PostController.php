@@ -29,7 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $data2 = cat::paginate(5);
+        $data2 = cat::paginate();
         return view('posts.create',compact('data2'));
     }
 

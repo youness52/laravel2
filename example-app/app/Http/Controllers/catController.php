@@ -14,9 +14,12 @@ class catController extends Controller
      */
     public function index()
     {
-        return view('categories.index');
+        $data = cat::paginate(5);
+    
+        return view('categories.index',compact('data'));
+        //return view('categories.index');
     }
-
+  
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +27,7 @@ class catController extends Controller
      */
     public function create()
     {
-        
+        return view('categories.create');
     }
 
     /**
@@ -59,9 +62,11 @@ class catController extends Controller
      * @param  \App\cat  $cat
      * @return \Illuminate\Http\Response
      */
-    public function show(cat $cat)
+ 
+    public function show()
     {
-        //
+       
+            
     }
 
     /**
@@ -93,8 +98,11 @@ class catController extends Controller
      * @param  \App\cat  $cat
      * @return \Illuminate\Http\Response
      */
-    public function destroy(cat $cat)
-    {
-        //
+    public function destroy($delete)
+    {   
+        $data= cat::find($delete);
+        $data->delete();
+        return redirect()->route('categories.index')
+                        ->with('success','categorie deleted successfully');
     }
 }

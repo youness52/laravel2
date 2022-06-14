@@ -5,3 +5,4 @@ use App\Http\Controllers;
 
 Route::resource('posts', PostController::class);
 Route::resource('categories', catController::class);
+Route::get('delete/{id}','catController@destroy');
